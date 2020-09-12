@@ -1,0 +1,57 @@
+class vehicles:
+    def __init__(self, make, model, year, weight, trips = 0):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.weight = weight
+        self.needsMaintenance = False
+        self.tripsSinceMaintenance = 0
+    
+    #getters 
+    def getMake(self):
+        return self.make
+
+    def getModel(self):
+        return self.model
+
+    def getYear(self):
+        return self.year
+
+    def getWeight(self):
+        return self.weight
+
+    #setters
+    def setMake(self, nMake):
+        self.make = nMake
+
+    def setModel(self, nModel):
+        self.model = nModel
+
+    def setYear(self, nYear):
+        self.year = nYear
+
+    def setWeight(self, nWeight):
+        self.weight = nWeight
+
+    def __str__(self):
+        return("Make: " + self.make + "\nModel: " + self.model + "\nYear: " + str(self.year) + "\nWeight: " + str(self.weight))
+        
+
+class cars(vehicles):
+    
+    def __init__(self, make, model, year, weight):
+        vehicles.__init__(self, make, model, year, weight)
+        self.isDriving = False
+
+    def drive(self):
+        if(self.tripsSinceMaintenance <= 100 and self.isDriving == False):
+            self.isDriving = True
+            self.tripsSinceMaintenance =+ 1
+            return self.tripsSinceMaintenance
+        else:
+            self.needsMaintenance = True
+
+impala = vehicles("Chevy", "Impala", 2005, 10000)
+impala2 = cars("Chevy", "Impala", 2005, 10000)
+
+print(impala2.drive())
